@@ -1,0 +1,12 @@
+.digit-generator {
+  text-align: center;
+  margin: 2rem 0;
+}
+.digits {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+  color: rgb(var(--accent));
+  word-break: break-all;
+  min-height: 2.5rem;
+}

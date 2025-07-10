@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/about.css';
+---
+
+<Layout title="MindMaster Club | About Pi">
+  <Header/>
+  <main class="about-container">
+    <section class="about-hero">
+      <h1>The <span class="pi-symbol">π</span> Phenomenon</h1>
+      <p class="subtitle">Exploring the most famous number in mathematics</p>
+    </section>
+
+    <section class="content-section">
+      <div class="definition-card">
+        <h2>What is Pi?</h2>
+        <div class="definition-content">
+          <div class="definition-visual">
+            <div class="circle-visual">
+              <div class="circle"></div>
+              <div class="diameter"></div>
+              <div class="circumference"></div>
+            </div>
+            <p class="formula">π = C ÷ d</p>
+          </div>
+          <div class="definition-text">
+            <p>Pi (π) is the ratio of a circle's circumference (C) to its diameter (d).</p>
+            <p>This fundamental relationship appears in countless mathematical and physical formulas, making π one of the most important constants in science.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h2>Historical Journey of π</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1900 BC</div>
+            <div class="timeline-content">
+              <h3>Babylonian Approximation</h3>
+              <p>Estimated π as 3.125 using geometric methods</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">250 BC</div>
+            <div class="timeline-content">
+              <h3>Archimedes' Method</h3>
+              <p>Used polygons to prove 3.1408 < π < 3.1429</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1400 AD</div>
+            <div class="timeline-content">
+              <h3>Madhava Series</h3>
+              <p>Indian mathematicians discovered infinite series for π</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1706</div>
+            <div class="timeline-content">
+              <h3>The π Symbol</h3>
+              <p>William Jones first used the Greek letter π for this constant</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-content">
+              <h3>Modern Calculations</h3>
+              <p>π calculated to 100 trillion digits using supercomputers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="applications-section">
+        <h2>Where We Use π</h2>
+        <div class="applications-grid">
+          <div class="application-card">
+            <div class="app-icon">🌍</div>
+            <h3>Geometry</h3>
+            <p>Circle area (πr²), sphere volume (4/3πr³), trigonometry</p>
+          </div>
+          <div class="application-card">
+            <div class="app-icon">🚀</div>
+            <h3>Physics</h3>
+            <p>Planetary motion, wave equations, quantum mechanics</p>
+          </div>
+          <div class="application-card">
+            <div class="app-icon">🏗️</div>
+            <h3>Engineering</h3>
+            <p>Structural design, signal processing, aerodynamics</p>
+          </div>
+          <div class="application-card">
+            <div class="app-icon">📡</div>
+            <h3>Technology</h3>
+            <p>GPS calculations, image processing, cryptography</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fun-facts">
+      <h2>π Mysteries & Fun Facts</h2>
+      <div class="facts-grid">
+        <div class="fact-item">
+          <h3>Normal Number?</h3>
+          <p>Mathematicians believe π is normal - every digit sequence appears equally often, but this remains unproven!</p>
+        </div>
+        <div class="fact-item">
+          <h3>π in Pop Culture</h3>
+          <p>Featured in movies like "π" (1998) and "Life of Pi" (2012), and celebrated worldwide on Pi Day (March 14) and Pi Approximation day on (July 22)</p>
+        </div>
+        <div class="fact-item">
+          <h3>Memorization Records</h3>
+          <p>While we don't focus on records, π's infinite pattern makes it fascinating for memory enthusiasts</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer/>
+</Layout>
+
+<style>
+</style>

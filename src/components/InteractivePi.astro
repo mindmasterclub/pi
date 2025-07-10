@@ -1,0 +1,117 @@
+---
+import '../styles/InteractivePi.css';
+---
+
+<div class="pi-visualization">
+  <canvas id="piCanvas" width="400" height="400"></canvas>
+  <div class="pi-controls">
+    <button id="animatePi" class="btn btn-primary">Show π Visualization</button>
+  </div>
+  <p class="visualization-explanation">Click to see how polygons approximate π</p>
+  <div id="piValueDisplay" class="pi-value">π ≈ <span id="piApproximation">3.14159...</span></div>
+</div>
+
+<script is:inline>
+  const canvas = document.getElementById('piCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 150;
+    let animationId = null;
+
+    function resetCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    }
+
+    function drawCompletePiVisualization() {
+      resetCanvas();
+      
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'rgba(100, 255, 218, 0.8)';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(centerX - radius, centerY);
+      ctx.lineTo(centerX + radius, centerY);
+      ctx.strokeStyle = 'rgba(255, 100, 218, 0.8)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      document.getElementById('piApproximation').textContent = '3.1415926535...';
+      document.getElementById('piValueDisplay').className = 'pi-value final';
+      
+      ctx.font = '16px Roboto Mono';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillText('Circumference (C) = π × diameter (d)', 30, 30);
+      
+      ctx.font = 'bold 40px Times New Roman';
+      ctx.fillText('π', centerX - 15, centerY + 15);
+    }
+
+    function animatePiApproximation() {
+      resetCanvas();
+      const startTime = performance.now();
+      const duration = 3000; 
+      const maxSides = 60;
+      const piValueElement = document.getElementById('piApproximation');
+      const piDisplayElement = document.getElementById('piValueDisplay');
+      
+      piDisplayElement.className = 'pi-value';
+      
+      function frame(timestamp) {
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const sides = 6 + Math.floor(progress * (maxSides - 6));
+        
+        const perimeter = sides * 2 * radius * Math.sin(Math.PI/sides);
+        const diameter = 2 * radius;
+        const currentPi = perimeter/diameter;
+        
+        piValueElement.textContent = currentPi.toFixed(10).replace(/\.?0+$/, '');
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.beginPath();
+        for (let i = 0; i <= sides; i++) {
+          const angle = (i * 2 * Math.PI / sides) - Math.PI/2;
+          const x = centerX + radius * Math.cos(angle);
+          const y = centerY + radius * Math.sin(angle);
+          
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        
+        const lineWidth = progress > 0.9 ? 3 * (1 - progress) + 1 * progress : 1;
+        ctx.strokeStyle = `rgba(100, 255, 218, ${0.5 + progress * 0.5})`;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+        
+        ctx.font = '16px Roboto Mono';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        if (sides < maxSides) {
+          ctx.fillText(`${sides}-sided polygon approximation`, 30, 30);
+        }
+        
+        if (progress < 1) {
+          animationId = requestAnimationFrame(frame);
+        } else {
+          setTimeout(drawCompletePiVisualization, 500);
+        }
+      }
+      
+      animationId = requestAnimationFrame(frame);
+    }
+
+    document.getElementById('animatePi')?.addEventListener('click', animatePiApproximation);
+
+    drawCompletePiVisualization();
+  }
+</script>

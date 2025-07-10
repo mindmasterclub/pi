@@ -1,0 +1,133 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-visual {
+  flex: 1;
+  min-height: 300px;
+}
+
+.title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .cta-buttons {
+    justify-content: flex-start;
+  }
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+.digits-section {
+  background: rgba(var(--accent), 0.05);
+  border-radius: 16px;
+  padding: 3rem;
+  margin: 4rem 0;
+  text-align: center;
+  border: 1px solid rgba(var(--accent), 0.1);
+}
+
+.digit-display {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.8rem;
+  margin: 2rem 0;
+  color: rgb(var(--accent));
+}
+
+.digit-note {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.facts-grid {
+  margin: 4rem 0;
+}
+
+.facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.fact-card {
+  background: linear-gradient(145deg, rgba(15, 20, 30, 0.7), rgba(25, 35, 55, 0.5));
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(var(--accent), 0.1);
+  transition: transform 0.3s ease;
+}
+
+.fact-card:hover {
+  transform: translateY(-5px);
+}
+
+.fact-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.challenge-section {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.challenge-box {
+  background: rgba(var(--accent), 0.05);
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid rgba(var(--accent), 0.1);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.pi-symbol {
+  animation: float 3s ease-in-out infinite;
+}

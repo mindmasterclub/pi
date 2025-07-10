@@ -1,0 +1,48 @@
+---
+import '../styles/DigitGenerator.css';
+---
+
+<div class="digit-generator">
+  <div class="digits">3.14</div>
+  <button class="btn btn-outline" id="showMoreDigits">Calculate More Digits</button>
+</div>
+
+<script is:inline>
+  let digitPosition = 3; 
+  const chunkSize = 10; 
+  const maxDigits = 1000; 
+
+  const button = document.getElementById('showMoreDigits');
+  const digitsElement = document.querySelector('.digits');
+
+  async function fetchPiDigits(start, numberOfDigits) {
+    const res = await fetch(`https://api.pi.delivery/v1/pi?start=${start}&numberOfDigits=${numberOfDigits}`);
+    const data = await res.json();
+    return data.content;
+  }
+
+  button?.addEventListener('click', async () => {
+    if (!digitsElement || digitPosition >= maxDigits) return;
+
+    button.disabled = true;
+    button.textContent = "Calculating...";
+
+    try {
+      const newDigits = await fetchPiDigits(digitPosition, chunkSize);
+      digitsElement.textContent += newDigits;
+      digitPosition += chunkSize;
+
+      if (digitPosition >= maxDigits) {
+        button.textContent = "Maximum Reached";
+        button.disabled = true;
+      } else {
+        button.textContent = "Calculate More Digits";
+        button.disabled = false;
+      }
+    } catch (err) {
+      console.error("Error fetching digits of Pi:", err);
+      button.textContent = "Error. Try Again";
+      button.disabled = false;
+    }
+  });
+</script>

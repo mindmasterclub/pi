@@ -1,0 +1,397 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/quiz.css';
+---
+
+<Layout title="MindMaster Club | Pi Memory Challenge">
+  <Header/>
+  <main class="quiz-container">
+    <section class="quiz-header">
+      <h1>π Memory Challenge</h1>
+      <p class="subtitle">How many digits of Pi can you remember?</p>
+      <div class="pi-reference">
+        <span class="pi-symbol">π</span> = 3.14159...
+      </div>
+    </section>
+
+    <section class="difficulty-selection" id="difficultySection">
+      <h2>Choose Your Challenge Level</h2>
+      <div class="difficulty-grid">
+        <div class="difficulty-card" data-level="beginner">
+          <div class="difficulty-icon">🌱</div>
+          <h3>Beginner</h3>
+          <p>10 digits</p>
+          <p class="difficulty-desc">Perfect for starting your Pi journey</p>
+        </div>
+        <div class="difficulty-card" data-level="intermediate">
+          <div class="difficulty-icon">🎯</div>
+          <h3>Intermediate</h3>
+          <p>25 digits</p>
+          <p class="difficulty-desc">Test your memory skills</p>
+        </div>
+        <div class="difficulty-card" data-level="advanced">
+          <div class="difficulty-icon">🚀</div>
+          <h3>Advanced</h3>
+          <p>50 digits</p>
+          <p class="difficulty-desc">For the Pi enthusiasts</p>
+        </div>
+        <div class="difficulty-card" data-level="expert">
+          <div class="difficulty-icon">🏆</div>
+          <h3>Expert</h3>
+          <p>100 digits</p>
+          <p class="difficulty-desc">Ultimate Pi mastery</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="challenge-area" id="challengeArea" style="display: none;">
+      <div class="challenge-header">
+        <h2 id="challengeTitle">Pi Memory Challenge</h2>
+        <div class="challenge-info">
+          <span class="level-badge" id="levelBadge">Beginner</span>
+          <span class="target-digits" id="targetDigits">Target: 10 digits</span>
+        </div>
+      </div>
+
+      <div class="pi-display">
+        <div class="pi-start">3.</div>
+        <div class="digits-container" id="digitsContainer">
+        </div>
+      </div>
+
+      <div class="input-section">
+        <label for="digitInput">Enter the next digit:</label>
+        <input type="number" id="digitInput" min="0" max="9" placeholder="?">
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">
+          <span id="currentProgress">0</span> / <span id="totalDigits">10</span> digits
+        </div>
+      </div>
+
+      <div class="game-controls">
+        <button id="giveUp" class="btn btn-outline">Give Up</button>
+        <button id="showHint" class="btn btn-secondary">Hint</button>
+        <button id="resetChallenge" class="btn btn-outline">Reset</button>
+      </div>
+    </section>
+
+    <section class="results-section" id="resultsSection" style="display: none;">
+      <div class="results-card">
+        <h2 id="resultsTitle">Challenge Complete!</h2>
+        <div class="score-display">
+          <div class="score-item">
+            <span class="score-label">Your Score:</span>
+            <span class="score-value" id="finalScore">0</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Accuracy:</span>
+            <span class="score-value" id="accuracy">0%</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Level:</span>
+            <span class="score-value" id="finalLevel">Beginner</span>
+          </div>
+        </div>
+        
+        <div class="achievement-badge" id="achievementBadge">
+          <div class="badge-icon">🎉</div>
+          <p id="achievementText">Great effort!</p>
+        </div>
+
+        <div class="results-actions">
+          <button id="tryAgain" class="btn btn-primary">Try Again</button>
+          <button id="nextLevel" class="btn btn-secondary" style="display: none;">Next Level</button>
+          <button id="shareResults" class="btn btn-outline">Share Results</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-section">
+      <h2>Memory Tips</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">🧠</div>
+          <h3>Chunking</h3>
+          <p>Break digits into groups of 3-4 for easier memorization</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🎵</div>
+          <h3>Rhythm & Rhyme</h3>
+          <p>Create songs or poems with the digits</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🏠</div>
+          <h3>Memory Palace</h3>
+          <p>Associate digits with familiar locations</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">📚</div>
+          <h3>Story Method</h3>
+          <p>Create narratives using the digit sequences</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer/>
+
+  <script is:inline>
+    const piDigits = "1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
+    
+    let currentLevel = 'beginner';
+    let currentPosition = 0;
+    let targetDigits = 10;
+    let score = 0;
+    let mistakes = 0;
+    let hintsUsed = 0;
+
+    const levels = {
+      beginner: { digits: 10, name: 'Beginner' },
+      intermediate: { digits: 25, name: 'Intermediate' },
+      advanced: { digits: 50, name: 'Advanced' },
+      expert: { digits: 100, name: 'Expert' }
+    };
+
+    const difficultySection = document.getElementById('difficultySection');
+    const challengeArea = document.getElementById('challengeArea');
+    const resultsSection = document.getElementById('resultsSection');
+    const digitInput = document.getElementById('digitInput');
+    const digitsContainer = document.getElementById('digitsContainer');
+    const progressFill = document.getElementById('progressFill');
+    const currentProgress = document.getElementById('currentProgress');
+    const totalDigits = document.getElementById('totalDigits');
+
+    document.querySelectorAll('.difficulty-card').forEach(card => {
+      card.addEventListener('click', () => startChallenge(card.dataset.level));
+    });
+
+    document.getElementById('digitInput').addEventListener('input', (e) => {
+      const input = e.target;
+      input.value = input.value.slice(0, 1);
+      
+      if (input.value.length === 1) {
+        submitDigit();
+      }
+    });
+
+    document.getElementById('giveUp').addEventListener('click', () => showResults(false));
+    document.getElementById('showHint').addEventListener('click', showHint);
+    document.getElementById('resetChallenge').addEventListener('click', resetChallenge);
+    document.getElementById('tryAgain').addEventListener('click', () => startChallenge(currentLevel));
+    document.getElementById('nextLevel').addEventListener('click', startNextLevel);
+    document.getElementById('shareResults').addEventListener('click', shareResults);
+
+    function startChallenge(level) {
+      currentLevel = level;
+      targetDigits = levels[level].digits;
+      currentPosition = 0;
+      score = 0;
+      mistakes = 0;
+      hintsUsed = 0;
+
+      document.getElementById('levelBadge').textContent = levels[level].name;
+      document.getElementById('targetDigits').textContent = `Target: ${targetDigits} digits`;
+      document.getElementById('challengeTitle').textContent = `${levels[level].name} Challenge`;
+      totalDigits.textContent = targetDigits;
+
+      difficultySection.style.display = 'none';
+      resultsSection.style.display = 'none';
+      challengeArea.style.display = 'block';
+
+      digitsContainer.innerHTML = '';
+      updateProgress();
+      digitInput.value = '';
+      digitInput.focus();
+    }
+
+    function submitDigit() {
+      const input = digitInput.value.trim();
+      if (input === '') return;
+
+      const digit = parseInt(input);
+      const correctDigit = parseInt(piDigits[currentPosition]);
+
+      if (digit === correctDigit) {
+        addDigitToDisplay(digit, true);
+        score++;
+        currentPosition++;
+        
+        if (currentPosition >= targetDigits) {
+          digitInput.value = '';
+          updateProgress();
+          showResults(true);
+          return;
+        }
+      } else {
+        addDigitToDisplay(digit, false);
+        mistakes++;
+        currentPosition++; 
+        
+        if (currentPosition >= targetDigits) {
+          digitInput.value = '';
+          updateProgress();
+          showCorrectDigitAndFinish(correctDigit);
+          return;
+        }
+        
+        showCorrectDigit(correctDigit);
+      }
+
+  digitInput.value = '';
+  digitInput.focus();
+  updateProgress();
+}
+
+
+    function addDigitToDisplay(digit, isCorrect) {
+      const digitSpan = document.createElement('span');
+      digitSpan.textContent = digit;
+      digitSpan.className = isCorrect ? 'digit-correct' : 'digit-wrong';
+      digitsContainer.appendChild(digitSpan);
+    }
+
+    function showCorrectDigit(correctDigit) {
+  setTimeout(() => {
+        const wrongDigit = digitsContainer.lastElementChild;
+        if (wrongDigit) {
+          wrongDigit.textContent = correctDigit;
+          wrongDigit.className = 'digit-corrected';
+        }
+    }
+
+    function showCorrectDigitAndFinish(correctDigit) {
+      const wrongDigit = digitsContainer.lastElementChild;
+      if (wrongDigit) {
+        setTimeout(() => {
+          wrongDigit.textContent = correctDigit;
+          wrongDigit.className = 'digit-corrected';
+          updateProgress();
+          setTimeout(() => showResults(true), 500);
+        }, 500);
+      } else {
+        showResults(true);
+      }
+    }
+
+
+    function updateProgress() {
+      const progress = (currentPosition / targetDigits) * 100;
+      progressFill.style.width = `${progress}%`;
+      currentProgress.textContent = currentPosition;
+    }
+
+    function showHint() {
+      if (hintsUsed >= 3) {
+        alert('No more hints available!');
+        return;
+      }
+      
+      const nextDigit = piDigits[currentPosition];
+      alert(`Hint: The next digit is ${nextDigit}`);
+      hintsUsed++;
+      
+      const hintBtn = document.getElementById('showHint');
+      hintBtn.textContent = `Hint (${3 - hintsUsed} left)`;
+      if (hintsUsed >= 3) {
+        hintBtn.disabled = true;
+      }
+    }
+
+    function resetChallenge() {
+      if (confirm('Are you sure you want to reset the challenge?')) {
+        startChallenge(currentLevel);
+      }
+    }
+
+    function showResults(completed) {
+      challengeArea.style.display = 'none';
+      resultsSection.style.display = 'block';
+
+      const actualScore = Math.min(score, targetDigits);
+      const accuracy = targetDigits > 0 ? Math.round((actualScore / targetDigits) * 100) : 0;
+      
+      document.getElementById('finalScore').textContent = actualScore;
+      document.getElementById('accuracy').textContent = `${accuracy}%`;
+      document.getElementById('finalLevel').textContent = levels[currentLevel].name;
+
+      let achievementText = '';
+      let showNextLevel = false;
+
+      if (completed) {
+        document.getElementById('resultsTitle').textContent = 'Challenge Complete! 🎉';
+        if (accuracy === 100) {
+          achievementText = 'Perfect Score! You\'re a π master!';
+          showNextLevel = true;
+        } else if (accuracy >= 80) {
+          achievementText = 'Excellent work! Keep practicing!';
+          showNextLevel = true;
+        } else if (accuracy >= 60) {
+          achievementText = 'Good effort! Room for improvement!';
+        } else {
+          achievementText = 'Keep practicing! You\'ll get better!';
+        }
+      } else {
+        document.getElementById('resultsTitle').textContent = 'Challenge Ended';
+        achievementText = `You reached ${actualScore} digits. Keep practicing!`;
+      }
+
+      document.getElementById('achievementText').textContent = achievementText;
+      
+      const nextLevelBtn = document.getElementById('nextLevel');
+      if (showNextLevel && getNextLevel()) {
+        nextLevelBtn.style.display = 'inline-block';
+      } else {
+        nextLevelBtn.style.display = 'none';
+      }
+    }
+
+    function getNextLevel() {
+      const levelOrder = ['beginner', 'intermediate', 'advanced', 'expert'];
+      const currentIndex = levelOrder.indexOf(currentLevel);
+      return currentIndex < levelOrder.length - 1 ? levelOrder[currentIndex + 1] : null;
+    }
+
+    function startNextLevel() {
+      const nextLevel = getNextLevel();
+      if (nextLevel) {
+        startChallenge(nextLevel);
+      }
+    }
+
+    function shareResults() {
+      const actualScore = Math.min(score, targetDigits);
+      const accuracy = targetDigits > 0 ? Math.round((actualScore / targetDigits) * 100) : 0;
+      const text = `I just memorized ${actualScore} digits of π on the MindMaster Club Pi Memory Challenge! 🎯 Level: ${levels[currentLevel].name} | Accuracy: ${accuracy}%`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Pi Memory Challenge Results',
+          text: text,
+          url: window.location.href
+        });
+      } else {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Results copied to clipboard!');
+        }).catch(() => {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          alert('Results copied to clipboard!');
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      digitInput.focus();
+    });
+  </script>
+</Layout>

@@ -1,0 +1,146 @@
+.simulation-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.simulation-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.simulation-hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.simulation-title {
+  color: rgb(var(--accent));
+}
+
+.simulation-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid rgba(var(--accent), 0.3);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.tab-btn:hover {
+  border-color: rgb(var(--accent));
+}
+
+.tab-btn.active {
+  background: rgba(var(--accent), 0.2);
+  border-color: rgb(var(--accent));
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.simulation-description {
+  flex: 1;
+  min-width: 300px;
+}
+
+.simulation-visual {
+  flex: 1;
+  min-width: 400px;
+}
+
+.pi-estimate {
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.pi-estimate span {
+  color: rgb(var(--accent));
+  font-weight: bold;
+}
+
+.simulation-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.simulation-stats {
+  margin-top: 1rem;
+  font-family: 'Roboto Mono', monospace;
+  background: rgba(var(--accent), 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.simulation-stats div {
+  margin-bottom: 0.5rem;
+}
+
+.simulation-stats span {
+  color: rgb(var(--accent));
+}
+
+.speed-control, .sides-control, .terms-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="range"] {
+  width: 150px;
+}
+
+.series-display {
+  font-family: 'Roboto Mono', monospace;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .tab-pane.active {
+    flex-direction: column;
+  }
+  
+  .simulation-description,
+  .simulation-visual {
+    min-width: 100%;
+  }
+}
+
+.convergence-chart {
+  background: rgba(10, 15, 25, 0.7);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.series-display {
+  font-family: 'Roboto Mono', monospace;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  min-height: 60px;
+}

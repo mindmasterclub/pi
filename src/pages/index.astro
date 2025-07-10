@@ -1,11 +1,101 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/index.css';
+import InteractivePi from '../components/InteractivePi.astro';
+import DigitGenerator from '../components/DigitGenerator.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="MindMaster Club | Pi Day Celebration">
+  <Header/>
+  <main class="home-container">
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="title">
+          Celebrate <span class="pi-symbol">π</span> Approximation Day!
+        </h1>
+        <p class="subtitle">July 22 - Infinite Digits, Infinite Possibilities</p>
+        
+        <div class="cta-buttons">
+          <a href="/about" class="btn btn-primary">
+            <span class="icon">📐</span> Learn About Pi
+          </a>
+          <a href="/simulation" class="btn btn-outline">
+            <span class="icon">🎯</span> Try Simulation
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <InteractivePi/>
+      </div>
+    </section>
+
+    <section class="digits-section">
+      <h2>The Magic Number</h2>
+      <div class="digit-display">
+        <DigitGenerator/>
+      </div>
+      <p class="digit-note">Pi has been calculated to over 100 trillion digits!</p>
+    </section>
+
+    <section class="facts-grid">
+      <h2>Did You Know?</h2>
+      <div class="facts-container">
+        <div class="fact-card">
+          <div class="fact-icon">🧮</div>
+          <h3>Ancient Calculation</h3>
+          <p>The Babylonians estimated Pi as 3.125 around 1900 BC</p>
+        </div>
+        
+        <div class="fact-card">
+          <div class="fact-icon">🚀</div>
+          <h3>Space Exploration</h3>
+          <p>NASA uses just 15 digits of Pi for interplanetary navigation</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🌌</div>
+          <h3>Universal Precision</h3>
+          <p>Only 39 digits of π can calculate the universe's circumference within one hydrogen atom's accuracy</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🎼</div>
+          <h3>Musical Pi</h3>
+          <p>π's digits can be played as musical notes (C=0, D=1,...) creating infinite melodies</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">📜</div>
+          <h3>Indiana's Pi Law</h3>
+          <p>In 1897, Indiana nearly passed a bill legally defining π as 3.2 before mathematicians intervened</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🌊</div>
+          <h3>Pi in Nature</h3>
+          <p>Rivers meander in paths where (actual length ÷ straight-line distance) averages π</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="challenge-section">
+      <h2>Test Your Knowledge</h2>
+      <div class="challenge-box">
+        <p>How many digits of Pi can you remember?</p>
+        <button class="btn btn-large" id="startChallenge">
+          Start Memory Challenge
+        </button>
+      </div>
+    </section>
+    <Footer/>
+  </main>
+
+  <script is:inline>
+    document.getElementById('startChallenge')?.addEventListener('click', () => {
+      window.location.href = '/quiz';
+    });
+  </script>
 </Layout>
