@@ -18,10 +18,10 @@ import Footer from '../components/Footer.astro';
         <p class="subtitle">July 22 - Infinite Digits, Infinite Possibilities</p>
         
         <div class="cta-buttons">
-          <a href="/about" class="btn btn-primary">
+          <a href="/pi/about" class="btn btn-primary">
             <span class="icon">📐</span> Learn About Pi
           </a>
-          <a href="/simulation" class="btn btn-outline">
+          <a href="/pi/simulation" class="btn btn-outline">
             <span class="icon">🎯</span> Try Simulation
           </a>
         </div>
@@ -95,7 +95,7 @@ import Footer from '../components/Footer.astro';
 
   <script is:inline>
     document.getElementById('startChallenge')?.addEventListener('click', () => {
-      window.location.href = '/quiz';
+      window.location.href = '/pi/quiz';
     });
   </script>
 </Layout>

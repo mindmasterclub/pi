@@ -1,6 +1,6 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://piday.mindmasterclub.github.io',
-})
-
+  site: 'https://mindmasterclub.github.io/pi/',
+  base: '/pi/',
+});

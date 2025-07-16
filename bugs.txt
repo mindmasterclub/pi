@@ -1,1 +1,8 @@
 Bug where when user types fast in memory test corrections are weird
+Fix Simulations
+Add events
+Add Activities
+Add Recipes 
+Add History
+Add Formulas
+Add Applications
