@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/history.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const historyTimeline = [
+  {
+    year: "1900 BC",
+    event: "Babylonians approximate π as 3.125",
+    detail: "The earliest known calculation of π appears in the Rhind Papyrus."
+  },
+  {
+    year: "250 BC",
+    event: "Archimedes' calculation",
+    detail: "Used polygons to prove that 3.1408 < π < 3.1429."
+  },
+  {
+    year: "480 AD",
+    event: "Zu Chongzhi's fraction",
+    detail: "Chinese mathematician calculated π ≈ 355/113 (accurate to 6 decimal places)."
+  },
+  {
+    year: "1706",
+    event: "π symbol introduced",
+    detail: "Welsh mathematician William Jones first used the Greek letter π."
+  },
+  {
+    year: "1761",
+    event: "π proven irrational",
+    detail: "Johann Lambert proved π cannot be expressed as a simple fraction."
+  },
+  {
+    year: "1882",
+    event: "π proven transcendental",
+    detail: "Ferdinand von Lindemann proved π cannot be a root of any algebraic equation."
+  },
+  {
+    year: "1988",
+    event: "First Pi Day",
+    detail: "Larry Shaw organized the first official celebration at San Francisco's Exploratorium."
+  },
+  {
+    year: "2019",
+    event: "31.4 trillion digits",
+    detail: "Google calculated π to 31.4 trillion decimal places."
+  },
+  {
+    year: "2025",
+    event: "300 thrillion digits",
+    detail: "Linus Media Group & Kioxia currently holds the record for the most digits of π calculated, at 300 trillion digits."
+  }
+];
+---
+<Layout title="MindMaster Club | History of Pi">
+  <Header/>
+  <main class="history-container">
+    <section class="history-hero">
+      <div class="history-hero-content">
+        <h1>
+          The <span class="pi-symbol">π</span> Through Time
+        </h1>
+        <p>A journey through mathematical history</p>
+      </div>
+    </section>
+
+    <section class="history-section">
+      <div class="timeline">
+        {historyTimeline.map(item => (
+          <div class="timeline-item">
+            <div class="timeline-year">{item.year}</div>
+            <div class="timeline-content">
+              <h3>{item.event}</h3>
+              <p>{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    <Footer/>
+  </main>
+</Layout>
