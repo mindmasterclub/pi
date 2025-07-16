@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/recipes.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const recipes = [
+  {
+    title: "Classic Pi Pie",
+    description: "A traditional circular pie decorated with the π symbol on top",
+    prepTime: "30 mins",
+    cookTime: "45 mins",
+    icon: "🥧"
+  },
+  {
+    title: "Pi-shaped Cookies",
+    description: "Sugar cookies shaped like the π symbol or decorated with pi digits",
+    prepTime: "20 mins",
+    cookTime: "10 mins",
+    icon: "🍪"
+  },
+  {
+    title: "Pizza Pi",
+    description: "Make a circular pizza and cut it into slices to demonstrate radians",
+    prepTime: "15 mins",
+    cookTime: "20 mins",
+    icon: "🍕"
+  },
+  {
+    title: "Pi-neapple Upside-Down Cake",
+    description: "A circular cake with pineapple rings arranged in a spiral pattern",
+    prepTime: "25 mins",
+    cookTime: "35 mins",
+    icon: "🍍"
+  },
+  {
+    title: "Pi-ña Colada",
+    description: "A tropical circular-themed drink to enjoy while doing math",
+    prepTime: "5 mins",
+    cookTime: "0 mins",
+    icon: "🍹"
+  },
+  {
+    title: "Radial Salad",
+    description: "A salad arranged in concentric circles with different ingredients",
+    prepTime: "15 mins",
+    cookTime: "0 mins",
+    icon: "🥗"
+  }
+];
+---
+<Layout title="MindMaster Club | Pi Day Recipes">
+  <Header/>
+  <main class="recipes-container">
+    <section class="recipes-hero">
+      <div class="recipes-hero-content">
+        <h1>
+          Pi Day <span class="pi-symbol">Recipes</span>
+        </h1>
+        <p>Delicious circular treats to celebrate mathematics</p>
+      </div>
+    </section>
+
+    <section class="recipes-section">
+      <div class="recipes-grid">
+        {recipes.map(recipe => (
+          <div class="recipe-card">
+            <div class="recipe-icon">{recipe.icon}</div>
+            <div class="recipe-details">
+              <h3>{recipe.title}</h3>
+              <p>{recipe.description}</p>
+              <div class="recipe-meta">
+                <span>⏱️ Prep: {recipe.prepTime}</span>
+                <span>🍳 Cook: {recipe.cookTime}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    <Footer/>
+  </main>
+</Layout>

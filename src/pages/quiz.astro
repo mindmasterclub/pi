@@ -150,6 +150,7 @@ import '../styles/quiz.css';
     let score = 0;
     let mistakes = 0;
     let hintsUsed = 0;
+    let isProcessing = false; 
 
     const levels = {
       beginner: { digits: 10, name: 'Beginner' },
@@ -175,7 +176,7 @@ import '../styles/quiz.css';
       const input = e.target;
       input.value = input.value.slice(0, 1);
       
-      if (input.value.length === 1) {
+      if (input.value.length === 1 && !isProcessing) {
         submitDigit();
       }
     });
@@ -194,6 +195,7 @@ import '../styles/quiz.css';
       score = 0;
       mistakes = 0;
       hintsUsed = 0;
+      isProcessing = false;
 
       document.getElementById('levelBadge').textContent = levels[level].name;
       document.getElementById('targetDigits').textContent = `Target: ${targetDigits} digits`;
@@ -211,9 +213,12 @@ import '../styles/quiz.css';
     }
 
     function submitDigit() {
+      if (isProcessing) return; 
+      
       const input = digitInput.value.trim();
       if (input === '') return;
 
+      isProcessing = true;
       const digit = parseInt(input);
       const correctDigit = parseInt(piDigits[currentPosition]);
 
@@ -225,60 +230,70 @@ import '../styles/quiz.css';
         if (currentPosition >= targetDigits) {
           digitInput.value = '';
           updateProgress();
-          showResults(true);
+          setTimeout(() => {
+            isProcessing = false;
+            showResults(true);
+          }, 100);
           return;
         }
       } else {
-        addDigitToDisplay(digit, false);
+        const wrongDigitElement = addDigitToDisplay(digit, false);
         mistakes++;
-        currentPosition++; 
         
-        if (currentPosition >= targetDigits) {
-          digitInput.value = '';
-          updateProgress();
-          showCorrectDigitAndFinish(correctDigit);
+        if (currentPosition + 1 >= targetDigits) {
+          showCorrectDigitAndFinish(correctDigit, wrongDigitElement);
           return;
         }
         
-        showCorrectDigit(correctDigit);
+        showCorrectDigit(correctDigit, wrongDigitElement);
+        currentPosition++;
       }
 
-  digitInput.value = '';
-  digitInput.focus();
-  updateProgress();
-}
-
+      digitInput.value = '';
+      updateProgress();
+      
+      setTimeout(() => {
+        isProcessing = false;
+        digitInput.focus();
+      }, 100);
+    }
 
     function addDigitToDisplay(digit, isCorrect) {
       const digitSpan = document.createElement('span');
       digitSpan.textContent = digit;
       digitSpan.className = isCorrect ? 'digit-correct' : 'digit-wrong';
       digitsContainer.appendChild(digitSpan);
+      return digitSpan; 
     }
 
-    function showCorrectDigit(correctDigit) {
-  setTimeout(() => {
-        const wrongDigit = digitsContainer.lastElementChild;
-        if (wrongDigit) {
-          wrongDigit.textContent = correctDigit;
-          wrongDigit.className = 'digit-corrected';
+    function showCorrectDigit(correctDigit, wrongDigitElement) {
+      setTimeout(() => {
+        if (wrongDigitElement && wrongDigitElement.className === 'digit-wrong') {
+          wrongDigitElement.textContent = correctDigit;
+          wrongDigitElement.className = 'digit-corrected';
         }
+      }, 500);
     }
 
-    function showCorrectDigitAndFinish(correctDigit) {
-      const wrongDigit = digitsContainer.lastElementChild;
-      if (wrongDigit) {
+    function showCorrectDigitAndFinish(correctDigit, wrongDigitElement) {
+      if (wrongDigitElement && wrongDigitElement.className === 'digit-wrong') {
         setTimeout(() => {
-          wrongDigit.textContent = correctDigit;
-          wrongDigit.className = 'digit-corrected';
+          wrongDigitElement.textContent = correctDigit;
+          wrongDigitElement.className = 'digit-corrected';
+          currentPosition++;
           updateProgress();
-          setTimeout(() => showResults(true), 500);
+          setTimeout(() => {
+            isProcessing = false;
+            showResults(true);
+          }, 500);
         }, 500);
       } else {
-        showResults(true);
+        setTimeout(() => {
+          isProcessing = false;
+          showResults(true);
+        }, 100);
       }
     }
-
 
     function updateProgress() {
       const progress = (currentPosition / targetDigits) * 100;

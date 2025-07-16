@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/events.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const globalEvents = [
+  {
+    title: "Pi Recitation Challenges",
+    description: "Many schools and universities hold competitions to see who can memorize the most digits of π. The world record is 70,000 digits!",
+    icon: "🏆",
+    type: "Academic"
+  },
+  {
+    title: "Pie Baking Contests",
+    description: "Bakers worldwide create π-themed pies (both sweet and savory) to celebrate the homophone. Some even decorate them with digit sequences.",
+    icon: "🥧",
+    type: "Culinary"
+  },
+  {
+    title: "Math Marathons",
+    description: "Communities organize math fairs with π-themed puzzles, circle measurement activities, and lectures about pi's role in science.",
+    icon: "🧮",
+    type: "Educational"
+  },
+  {
+    title: "Pi Minute Celebration",
+    description: "At 1:59 PM (3/14 1:59 completes π's first digits), people pause to eat pie, recite digits, or share math jokes.",
+    icon: "⏰",
+    type: "Tradition"
+  },
+  {
+    title: "Digital π Celebrations",
+    description: "Online events like virtual pi quizzes, live-streamed lectures from mathematicians, and global digit memorization attempts.",
+    icon: "💻",
+    type: "Virtual"
+  },
+  {
+    title: "Art Installations",
+    description: "Museums and parks display π-inspired art, from sculptures with digit sequences to light shows projecting π's infinite decimals.",
+    icon: "🎨",
+    type: "Cultural"
+  }
+];
+---
+<Layout title="MindMaster Club | Pi Day Events">
+  <Header/>
+  <main class="events-container">
+    <section class="events-hero">
+      <div class="events-hero-content">
+        <h1>
+          Global <span class="pi-symbol">π</span> Day Traditions
+        </h1>
+        <p>How the world celebrates mathematics</p>
+      </div>
+    </section>
+
+    <section class="events-main">
+      <div class="events-grid">
+        {globalEvents.map(event => (
+          <div class="event-card">
+            <div class="event-header">
+              <span class="event-icon">{event.icon}</span>
+              <span class="event-type">{event.type}</span>
+            </div>
+            <h3>{event.title}</h3>
+            <p>{event.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+    <Footer/>
+  </main>
+</Layout>

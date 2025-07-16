@@ -1,0 +1,72 @@
+.events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.events-hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.events-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.events-hero p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.pi-symbol {
+  color: var(--accent-color);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.events-main {
+  margin: 4rem 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.event-card {
+  background: linear-gradient(145deg, rgba(15, 20, 30, 0.7), rgba(25, 35, 55, 0.5));
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(var(--accent), 0.1);
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.event-icon {
+  font-size: 1.8rem;
+}
+
+.event-type {
+  background: rgba(var(--accent), 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}

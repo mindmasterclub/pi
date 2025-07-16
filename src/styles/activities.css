@@ -1,0 +1,88 @@
+.activities-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.activities-hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.activities-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.activities-hero p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.pi-symbol {
+  color: var(--accent-color);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.activities-section {
+  margin: 4rem 0;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.activity-card {
+  background: linear-gradient(145deg, rgba(15, 20, 30, 0.7), rgba(25, 35, 55, 0.5));
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(var(--accent), 0.1);
+  transition: transform 0.3s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+}
+
+.activity-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.activity-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.difficulty {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  align-self: flex-start;
+}
+
+.difficulty.easy {
+  background: rgba(0, 200, 0, 0.2);
+  color: lightgreen;
+}
+
+.difficulty.medium {
+  background: rgba(200, 200, 0, 0.2);
+  color: yellow;
+}
+
+.difficulty.hard {
+  background: rgba(200, 0, 0, 0.2);
+  color: lightcoral;
+}

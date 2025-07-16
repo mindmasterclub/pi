@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/activities.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const activities = [
+  {
+    title: "Memorize Pi Digits",
+    description: "Challenge yourself to memorize as many digits of pi as you can. Start with 10, then 20, and keep going!",
+    icon: "🧠",
+    difficulty: "Easy"
+  },
+  {
+    title: "Pi Art Project",
+    description: "Create art using the digits of pi - assign colors to numbers and paint or draw the sequence.",
+    icon: "🎨",
+    difficulty: "Medium"
+  },
+  {
+    title: "Circumference Hunt",
+    description: "Measure circular objects around your home and calculate their circumference using C = πd.",
+    icon: "📏",
+    difficulty: "Easy"
+  },
+  {
+    title: "Pi Poetry",
+    description: "Write a poem where the number of letters in each word corresponds to the digits of pi (3-1-4-1-5...).",
+    icon: "✍️",
+    difficulty: "Hard"
+  },
+  {
+    title: "Pi Trivia",
+    description: "Create a quiz about pi's history, uses, and fun facts to test your friends and family.",
+    icon: "❓",
+    difficulty: "Medium"
+  },
+  {
+    title: "Pi Walk",
+    description: "Walk 3.14 miles (or km) while discussing math concepts with friends.",
+    icon: "🚶‍♂️",
+    difficulty: "Easy"
+  }
+];
+---
+<Layout title="MindMaster Club | Pi Day Activities">
+  <Header/>
+  <main class="activities-container">
+    <section class="activities-hero">
+      <div class="activities-hero-content">
+        <h1>
+          Pi Day <span class="pi-symbol">Activities</span>
+        </h1>
+        <p>Fun ways to celebrate mathematics</p>
+      </div>
+    </section>
+
+    <section class="activities-section">
+      <div class="activities-grid">
+        {activities.map(activity => (
+          <div class="activity-card">
+            <div class="activity-icon">{activity.icon}</div>
+            <div class="activity-details">
+              <h3>{activity.title}</h3>
+              <span class="difficulty {activity.difficulty.toLowerCase()}">
+                {activity.difficulty}
+              </span>
+              <p>{activity.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    <Footer/>
+  </main>
+</Layout>
