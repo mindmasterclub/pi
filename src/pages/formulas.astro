@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/formulas.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="MindMaster Club | Pi Formulas">
+  <Header/>
+  <main class="formulas-container">
+    <section class="formulas-hero">
+      <h1>The Mathematics of <span class="pi-symbol">π</span></h1>
+      <p class="subtitle">Exploring the formulas that define and approximate pi</p>
+    </section>
+
+    <section class="formulas-intro">
+      <p>Pi (π) appears in countless formulas across mathematics, physics, and engineering. Below are some of the most important and beautiful formulas involving this fundamental constant.</p>
+    </section>
+
+    <section class="formulas-section">
+      <h2>Fundamental Definitions</h2>
+      
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Circle Circumference</h3>
+          <span class="formula-tag">Definition</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            C = 2πr
+          </div>
+          <p>The most fundamental definition: π is the ratio of a circle's circumference to its diameter.</p>
+          <div class="formula-visual">
+            <svg viewBox="0 0 200 200" class="circle-visual">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#3b82f6" stroke-width="2"/>
+              <line x1="100" y1="20" x2="100" y2="180" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5"/>
+              <text x="100" y="195" text-anchor="middle" font-size="12">d = 2r</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Circle Area</h3>
+          <span class="formula-tag">Definition</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            A = πr²
+          </div>
+          <p>The area of a circle is proportional to the square of its radius, with π as the constant of proportionality.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulas-section">
+      <h2>Infinite Series</h2>
+      
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Leibniz Formula</h3>
+          <span class="formula-tag">1674</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ...
+          </div>
+          <p>One of the simplest infinite series for π, discovered by Gottfried Wilhelm Leibniz. While elegant, it converges very slowly (after 500,000 terms, it's only accurate to 5 decimal places).</p>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Nilakantha Series</h3>
+          <span class="formula-tag">15th Century</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            π = 3 + 4/(2×3×4) - 4/(4×5×6) + 4/(6×7×8) - ...
+          </div>
+          <p>Discovered by the Indian mathematician Nilakantha Somayaji, this series converges much faster than the Leibniz formula.</p>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Ramanujan's Formula</h3>
+          <span class="formula-tag">1910</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            1/π = (2√2)/9801 ∑<sub>k=0</sub><sup>∞</sup> (4k)!(1103+26390k)/(k!<sup>4</sup>396<sup>4k</sup>)
+          </div>
+          <p>An extremely rapidly converging series discovered by Srinivasa Ramanujan. Each term adds about 8 decimal digits of precision.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulas-section">
+      <h2>Infinite Products</h2>
+      
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Wallis Product</h3>
+          <span class="formula-tag">1656</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            π/2 = (2×2)/(1×3) × (4×4)/(3×5) × (6×6)/(5×7) × ...
+          </div>
+          <p>Discovered by John Wallis, this was the first infinite sequence ever found for π.</p>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Viète's Formula</h3>
+          <span class="formula-tag">1593</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            2/π = √(1/2) × √(1/2 + 1/2√(1/2)) × ...
+          </div>
+          <p>The first infinite product in mathematics, discovered by François Viète.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulas-section">
+      <h2>Continued Fractions</h2>
+      
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Simple Continued Fraction</h3>
+          <span class="formula-tag">General</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            π = 3 + 1/(7 + 1/(15 + 1/(1 + 1/(292 + ...))))
+          </div>
+          <p>The simple continued fraction representation of π has no apparent pattern.</p>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Generalized Continued Fraction</h3>
+          <span class="formula-tag">1706</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            π = 4/(1 + 1²/(3 + 2²/(5 + 3²/(7 + ...))))
+          </div>
+          <p>Discovered by William Brouncker, this was the first continued fraction representation of π.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulas-section">
+      <h2>Integrals and Calculus</h2>
+      
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Gaussian Integral</h3>
+          <span class="formula-tag">Probability</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            ∫<sub>-∞</sub><sup>∞</sup> e<sup>-x²</sup> dx = √π
+          </div>
+          <p>This integral is fundamental in probability theory and statistics.</p>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Basel Problem</h3>
+          <span class="formula-tag">1734</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            ∑<sub>n=1</sub><sup>∞</sup> 1/n² = π²/6
+          </div>
+          <p>Solved by Euler, this showed a deep connection between π and the integers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulas-section">
+      <h2>Modern Computation Formulas</h2>
+      
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>Chudnovsky Algorithm</h3>
+          <span class="formula-tag">1989</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            1/π = 12 ∑<sub>k=0</sub><sup>∞</sup> (-1)<sup>k</sup> (6k)!(13591409+545140134k)/((3k)!(k!)³ 640320<sup>3k+3/2</sup>
+          </div>
+          <p>Used to set several π calculation records, including the first computation of over 1 billion digits.</p>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-header">
+          <h3>BBP Formula</h3>
+          <span class="formula-tag">1995</span>
+        </div>
+        <div class="formula-content">
+          <div class="formula-equation">
+            π = ∑<sub>k=0</sub><sup>∞</sup> 1/16<sup>k</sup> (4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6))
+          </div>
+          <p>The Bailey-Borwein-Plouffe formula allows calculating specific binary or hexadecimal digits of π without calculating preceding digits.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulas-explore">
+      <h2>Explore More</h2>
+      <div class="explore-actions">
+        <a href="/pi/about" class="btn btn-primary">
+          <span class="icon">🧮</span> History of Pi
+        </a>
+        <a href="/pi/simulation" class="btn btn-outline">
+          <span class="icon">🔢</span> Calculate Pi Yourself
+        </a>
+      </div>
+    </section>
+    <Footer/>
+  </main>
+</Layout>

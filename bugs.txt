@@ -1,3 +1,2 @@
 Fix Simulations
-Add Formulas
 Add Applications

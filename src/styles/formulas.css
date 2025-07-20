@@ -1,0 +1,174 @@
+h2 {
+  color: white !important;
+}
+
+.formulas-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #1f2937;
+}
+
+.formulas-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.formulas-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.formulas-hero p {
+  color: white;
+}
+
+.pi-symbol {
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #4b5563;
+}
+
+.formulas-intro {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: white;
+}
+
+.formulas-section {
+  margin-bottom: 4rem;
+}
+
+.formulas-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+  color: #111827;
+}
+
+.formula-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.formula-card:hover {
+  transform: translateY(-2px);
+}
+
+.formula-header {
+  background: #3b82f6;
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formula-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.formula-tag {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.formula-content {
+  padding: 1.5rem;
+}
+
+.formula-equation {
+  font-family: "Times New Roman", serif;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+}
+
+.formula-visual {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.circle-visual {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.formulas-explore {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.formulas-explore h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.explore-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-outline {
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
+}
+
+.btn-outline:hover {
+  background: #eff6ff;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .formulas-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .formula-equation {
+    font-size: 1rem;
+  }
+}

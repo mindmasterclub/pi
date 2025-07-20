@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/applications.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="MindMaster Club | Pi Applications">
+  <Header/>
+  <main class="applications-container">
+    <section class="applications-hero">
+      <h1>The Ubiquitous <span class="pi-symbol">π</span></h1>
+      <p class="subtitle">Discover how pi appears in unexpected places across science and nature</p>
+    </section>
+
+    <section class="applications-intro">
+      <p>Pi isn't just for circles! This magical number appears in countless applications from quantum physics to DNA structure. Explore the remarkable ways π shapes our understanding of the universe.</p>
+    </section>
+
+    <section class="applications-section">
+      <h2>Physics & Engineering</h2>
+      
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Quantum Mechanics</h3>
+          <span class="application-tag">Heisenberg's Principle</span>
+        </div>
+        <div class="application-content">
+          <p>π appears in the fundamental uncertainty principle: ΔxΔp ≥ h/(4π), showing we cannot simultaneously know a particle's position and momentum with perfect accuracy.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Electromagnetism</h3>
+          <span class="application-tag">Maxwell's Equations</span>
+        </div>
+        <div class="application-content">
+          <p>Coulomb's law of electric force: F = (1/4πε₀)(q₁q₂/r²), where ε₀ is the electric constant and π relates the force to the spherical geometry of electric fields.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Structural Engineering</h3>
+          <span class="application-tag">Buckling Analysis</span>
+        </div>
+        <div class="application-content">
+          <p>The critical buckling load of columns is given by P = π²EI/(KL)², where π² emerges from solving the differential equation of elastic curves.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications-section">
+      <h2>Astronomy & Space</h2>
+      
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Planetary Orbits</h3>
+          <span class="application-tag">Kepler's Third Law</span>
+        </div>
+        <div class="application-content">
+          <p>The orbital period T of a planet is T² = (4π²/GM)a³, relating a planet's year to its distance from the sun through π.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>GPS Calculations</h3>
+          <span class="application-tag">Relativity Corrections</span>
+        </div>
+        <div class="application-content">
+          <p>GPS satellites must account for relativistic time dilation using formulas containing π to maintain centimeter-level accuracy.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Rocket Science</h3>
+          <span class="application-tag">Tsiolkovsky Equation</span>
+        </div>
+        <div class="application-content">
+          <p>π appears in calculations of nozzle expansion ratios and thrust coefficients critical for rocket engine design.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications-section">
+      <h2>Biology & Medicine</h2>
+      
+      <div class="application-card">
+        <div class="application-header">
+          <h3>DNA Structure</h3>
+          <span class="application-tag">Helical Geometry</span>
+        </div>
+        <div class="application-content">
+          <p>The famous double helix completes a full turn every 10 base pairs (3.4 nm), with π determining its helical parameters and packing density in chromosomes.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Blood Flow</h3>
+          <span class="application-tag">Poiseuille's Law</span>
+        </div>
+        <div class="application-content">
+          <p>Blood flow rate through vessels depends on πr⁴, showing why small diameter changes dramatically affect circulation (Δr → Δflow⁴).</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Eye Anatomy</h3>
+          <span class="application-tag">Visual Acuity</span>
+        </div>
+        <div class="application-content">
+          <p>The resolving power of the human eye depends on π through the Rayleigh criterion: θ ≈ 1.22λ/D (in radians).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications-section">
+      <h2>Technology & Computing</h2>
+      
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Signal Processing</h3>
+          <span class="application-tag">Fourier Transform</span>
+        </div>
+        <div class="application-content">
+          <p>The Fourier transform F(ω) = ∫f(t)e^(-iωt)dt (with ω in radians/second) underlies all modern digital signal processing.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Computer Graphics</h3>
+          <span class="application-tag">3D Rendering</span>
+        </div>
+        <div class="application-content">
+          <p>π appears in lighting calculations (Lambert's cosine law), spherical harmonics, and environment mapping for realistic CGI.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Cryptography</h3>
+          <span class="application-tag">RSA Algorithm</span>
+        </div>
+        <div class="application-content">
+          <p>Prime number distributions (related to ζ functions involving π²/6) are crucial for public-key encryption security.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications-section">
+      <h2>Everyday Life</h2>
+      
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Timekeeping</h3>
+          <span class="application-tag">Pendulum Clocks</span>
+        </div>
+        <div class="application-content">
+          <p>The period T of a pendulum is T ≈ 2π√(L/g), making π essential for accurate time measurement since the 17th century.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Architecture</h3>
+          <span class="application-tag">Dome Construction</span>
+        </div>
+        <div class="application-content">
+          <p>From the Pantheon to modern geodesic domes, π determines stress distributions in curved structures.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Art & Design</h3>
+          <span class="application-tag">Golden Ratio</span>
+        </div>
+        <div class="application-content">
+          <p>The golden spiral (r = ae^(bθ)) connects to π through its logarithmic growth angle of π/2 radians.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications-section">
+      <h2>Mathematical Surprises</h2>
+      
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Probability</h3>
+          <span class="application-tag">Buffon's Needle</span>
+        </div>
+        <div class="application-content">
+          <p>Dropping needles on parallel lines gives π as P = 2L/(πd) - a Monte Carlo method to estimate π experimentally.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Number Theory</h3>
+          <span class="application-tag">Prime Distribution</span>
+        </div>
+        <div class="application-content">
+          <p>The probability two random numbers are coprime is 6/π² ≈ 61%, linking π to the Riemann zeta function.</p>
+        </div>
+      </div>
+
+      <div class="application-card">
+        <div class="application-header">
+          <h3>Fractals</h3>
+          <span class="application-tag">Mandelbrot Set</span>
+        </div>
+        <div class="application-content">
+          <p>π appears in the fractal dimension calculations and in the bifurcation rate of chaotic systems (Feigenbaum constant).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="applications-explore">
+      <h2>Dive Deeper</h2>
+      <div class="explore-actions">
+        <a href="/pi/formulas" class="btn btn-primary">
+          <span class="icon">🧮</span> Explore Pi Formulas
+        </a>
+        <a href="/pi/simulation" class="btn btn-outline">
+          <span class="icon">🔬</span> Try Experiments
+        </a>
+      </div>
+    </section>
+    <Footer/>
+  </main>
+</Layout>

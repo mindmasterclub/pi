@@ -6,96 +6,198 @@ import DigitGenerator from '../components/DigitGenerator.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
-
 <Layout title="MindMaster Club | Pi Day Celebration">
-  <Header/>
-  <main class="home-container">
-    <section class="hero">
-      <div class="hero-content">
-        <h1 class="title">
-          Celebrate <span class="pi-symbol">π</span> Approximation Day!
-        </h1>
-        <p class="subtitle">July 22 - Infinite Digits, Infinite Possibilities</p>
-        
-        <div class="cta-buttons">
-          <a href="/pi/about" class="btn btn-primary">
-            <span class="icon">📐</span> Learn About Pi
-          </a>
-          <a href="/pi/simulation" class="btn btn-outline">
-            <span class="icon">🎯</span> Try Simulation
-          </a>
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="pi-animation">π</div>
+      <h1 class="loading-title" id="greetingText">Happy Pi Day to All!</h1>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+
+  <div id="mainContent" class="main-content" style="display: none;">
+    <Header/>
+    <main class="home-container">
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="title">
+            Celebrate <span class="pi-symbol">π</span> Approximation Day!
+          </h1>
+          <p class="subtitle">July 22 - Infinite Digits, Infinite Possibilities</p>
+          
+          <div class="cta-buttons">
+            <a href="/pi/about" class="btn btn-primary">
+              <span class="icon">📐</span> Learn About Pi
+            </a>
+            <a href="/pi/simulation" class="btn btn-outline">
+              <span class="icon">🎯</span> Try Simulation
+            </a>
+          </div>
         </div>
+        <div class="hero-visual">
+          <InteractivePi/>
+        </div>
+      </section>
+      
+      <section class="digits-section">
+        <h2>The Magic Number</h2>
+        <div class="digit-display">
+          <DigitGenerator/>
+        </div>
+        <p class="digit-note">Pi has been calculated to over 100 trillion digits!</p>
+      </section>
+      
+      <section class="facts-grid">
+        <h2>Did You Know?</h2>
+        <div class="facts-container">
+          <div class="fact-card">
+            <div class="fact-icon">🧮</div>
+            <h3>Ancient Calculation</h3>
+            <p>The Babylonians estimated Pi as 3.125 around 1900 BC</p>
+          </div>
+          
+          <div class="fact-card">
+            <div class="fact-icon">🚀</div>
+            <h3>Space Exploration</h3>
+            <p>NASA uses just 15 digits of Pi for interplanetary navigation</p>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">🌌</div>
+            <h3>Universal Precision</h3>
+            <p>Only 39 digits of π can calculate the universe's circumference within one hydrogen atom's accuracy</p>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">🎼</div>
+            <h3>Musical Pi</h3>
+            <p>π's digits can be played as musical notes (C=0, D=1,...) creating infinite melodies</p>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">📜</div>
+            <h3>Indiana's Pi Law</h3>
+            <p>In 1897, Indiana nearly passed a bill legally defining π as 3.2 before mathematicians intervened</p>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">🌊</div>
+            <h3>Pi in Nature</h3>
+            <p>Rivers meander in paths where (actual length ÷ straight-line distance) averages π</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="pi-easter-egg-trigger">
+        <div class="pi-symbol" id="piEggTrigger">π</div>
+        <div class="hint">Click me for a surprise!</div>
       </div>
 
-      <div class="hero-visual">
-        <InteractivePi/>
-      </div>
-    </section>
-
-    <section class="digits-section">
-      <h2>The Magic Number</h2>
-      <div class="digit-display">
-        <DigitGenerator/>
-      </div>
-      <p class="digit-note">Pi has been calculated to over 100 trillion digits!</p>
-    </section>
-
-    <section class="facts-grid">
-      <h2>Did You Know?</h2>
-      <div class="facts-container">
-        <div class="fact-card">
-          <div class="fact-icon">🧮</div>
-          <h3>Ancient Calculation</h3>
-          <p>The Babylonians estimated Pi as 3.125 around 1900 BC</p>
+      <section class="name-decrypt-section" id="piEasterEgg">
+        <h2>🌟 Personalized Pi Greeting</h2>
+        <div class="decrypt-box">
+          <p>You found the secret Pi greeting generator!</p>
+          <div class="input-group">
+            <input type="text" id="userName" placeholder="Enter your name..." class="decrypt-input">
+            <button class="btn btn-primary" id="generateLinkBtn">Generate Link</button>
+          </div>
+          <div id="linkResult" class="decrypt-result" style="display: none;">
+            <p>Share this special Pi Day greeting:</p>
+            <div class="link-container">
+              <input type="text" id="generatedLink" readonly class="link-input">
+              <button class="btn btn-copy" id="copyLinkBtn">📋 Copy</button>
+            </div>
+          </div>
         </div>
-        
-        <div class="fact-card">
-          <div class="fact-icon">🚀</div>
-          <h3>Space Exploration</h3>
-          <p>NASA uses just 15 digits of Pi for interplanetary navigation</p>
-        </div>
+      </section>
 
-        <div class="fact-card">
-          <div class="fact-icon">🌌</div>
-          <h3>Universal Precision</h3>
-          <p>Only 39 digits of π can calculate the universe's circumference within one hydrogen atom's accuracy</p>
+      <section class="challenge-section">
+        <h2>Test Your Knowledge</h2>
+        <div class="challenge-box">
+          <p>How many digits of Pi can you remember?</p>
+          <button class="btn btn-large" id="startChallenge">
+            Start Memory Challenge
+          </button>
         </div>
-
-        <div class="fact-card">
-          <div class="fact-icon">🎼</div>
-          <h3>Musical Pi</h3>
-          <p>π's digits can be played as musical notes (C=0, D=1,...) creating infinite melodies</p>
-        </div>
-
-        <div class="fact-card">
-          <div class="fact-icon">📜</div>
-          <h3>Indiana's Pi Law</h3>
-          <p>In 1897, Indiana nearly passed a bill legally defining π as 3.2 before mathematicians intervened</p>
-        </div>
-
-        <div class="fact-card">
-          <div class="fact-icon">🌊</div>
-          <h3>Pi in Nature</h3>
-          <p>Rivers meander in paths where (actual length ÷ straight-line distance) averages π</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="challenge-section">
-      <h2>Test Your Knowledge</h2>
-      <div class="challenge-box">
-        <p>How many digits of Pi can you remember?</p>
-        <button class="btn btn-large" id="startChallenge">
-          Start Memory Challenge
-        </button>
-      </div>
-    </section>
-    <Footer/>
-  </main>
+      </section>
+      <Footer/>
+    </main>
+  </div>
 
   <script is:inline>
-    document.getElementById('startChallenge')?.addEventListener('click', () => {
-      window.location.href = '/pi/quiz';
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        const mainContent = document.getElementById('mainContent');
+        
+        loadingScreen.classList.add('fade-out');
+        
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          mainContent.style.display = 'block';
+          mainContent.classList.add('show');
+        }, 500);
+      }, 2000); 
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const nameParam = urlParams.get('name');
+      if (nameParam) {
+        document.getElementById('greetingText').textContent = `Happy Pi Day to ${decodeURIComponent(nameParam)}!`;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const trigger = document.getElementById('piEggTrigger');
+      const easterEgg = document.getElementById('piEasterEgg');
+
+      trigger.addEventListener('click', () => {
+        easterEgg.classList.toggle('revealed');
+        
+        if (easterEgg.classList.contains('revealed')) {
+          trigger.textContent = 'πππ';
+          setTimeout(() => {
+            trigger.textContent = 'π';
+          }, 1000);
+        }
+      });
+
+      document.getElementById('generateLinkBtn')?.addEventListener('click', () => {
+        const nameInput = document.getElementById('userName');
+        const resultDiv = document.getElementById('linkResult');
+        const name = nameInput.value.trim();
+        
+        if (!name) {
+          alert('Please enter your name!');
+          return;
+        }
+
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('name', encodeURIComponent(name));
+        const shareableUrl = currentUrl.toString();
+
+        document.getElementById('generatedLink').value = shareableUrl;
+        resultDiv.style.display = 'block';
+
+        document.getElementById('greetingText').textContent = `Happy Pi Day to ${name}!`;
+      });
+
+      document.getElementById('copyLinkBtn')?.addEventListener('click', () => {
+        const linkInput = document.getElementById('generatedLink');
+        linkInput.select();
+        document.execCommand('copy');
+        
+        const copyBtn = document.getElementById('copyLinkBtn');
+        copyBtn.textContent = '✅ Copied!';
+        setTimeout(() => {
+          copyBtn.textContent = '📋 Copy';
+        }, 2000);
+      });
+
+      document.getElementById('userName')?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          document.getElementById('generateLinkBtn').click();
+        }
+      });
+
+      document.getElementById('startChallenge')?.addEventListener('click', () => {
+        window.location.href = '/pi/quiz';
+      });
     });
   </script>
 </Layout>

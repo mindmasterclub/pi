@@ -8,188 +8,426 @@ import Footer from '../components/Footer.astro';
 <Layout title="MindMaster Club | Pi Simulation">
   <Header />
   <main class="simulation-container">
-    <section class="simulation-hero">
-      <h1>π <span class="simulation-title">Simulations</span></h1>
-      <p class="subtitle">Visualize different methods for calculating π</p>
-    </section>
+      <section class="simulation-hero">
+          <h1>π <span class="simulation-title">Simulations</span></h1>
+          <p class="subtitle">Visualize different methods for calculating π</p>
+      </section>
 
-    <div class="simulation-tabs">
-      <button class="tab-btn active" data-tab="monte-carlo">Monte Carlo</button>
-      <button class="tab-btn" data-tab="archimedes">Archimedes' Method</button>
-      <button class="tab-btn" data-tab="leibniz">Leibniz Series</button>
-    </div>
-
-    <div class="simulation-content">
-      <div id="monte-carlo" class="tab-pane active">
-        <div class="simulation-description">
-          <h2>Monte Carlo Method</h2>
-          <p>This method approximates π by randomly placing points in a square and calculating the ratio of points that fall inside the inscribed circle.</p>
-          <div class="pi-estimate">Current π estimate: <span id="mc-pi-estimate">0</span></div>
-          <div class="simulation-controls">
-            <button id="mc-start" class="btn btn-primary">Start</button>
-            <button id="mc-stop" class="btn btn-outline">Stop</button>
-            <button id="mc-reset" class="btn btn-outline">Reset</button>
-            <div class="speed-control">
-              <label for="mc-speed">Speed:</label>
-              <input type="range" id="mc-speed" min="1" max="10" value="5">
-            </div>
-          </div>
-        </div>
-        <div class="simulation-visual">
-          <canvas id="mc-canvas" width="400" height="400"></canvas>
-          <div class="simulation-stats">
-            <div>Points: <span id="mc-points">0</span></div>
-            <div>Inside: <span id="mc-inside">0</span></div>
-            <div>Ratio: <span id="mc-ratio">0</span></div>
-          </div>
-        </div>
+      <div class="simulation-tabs">
+          <button class="tab-btn active" data-tab="monte-carlo">Monte Carlo</button>
+          <button class="tab-btn" data-tab="archimedes">Archimedes' Method</button>
+          <button class="tab-btn" data-tab="leibniz">Leibniz Series</button>
       </div>
 
-      <div id="archimedes" class="tab-pane">
-        <div class="simulation-description">
-          <h2>Archimedes' Method</h2>
-          <p>Archimedes approximated π by calculating the perimeters of inscribed and circumscribed polygons around a circle.</p>
-          <div class="pi-estimate">Current π estimate: <span id="archimedes-pi-estimate">0</span></div>
-          <div class="simulation-controls">
-            <button id="archimedes-start" class="btn btn-primary">Start</button>
-            <button id="archimedes-stop" class="btn btn-outline">Stop</button>
-            <div class="sides-control">
-              <label for="archimedes-sides">Sides: <span id="current-sides">6</span></label>
-              <input type="range" id="archimedes-sides" min="6" max="96" step="6" value="6">
-            </div>
+      <div class="simulation-content">
+          <div id="monte-carlo" class="tab-pane active">
+              <div class="simulation-description">
+                  <h2>Monte Carlo Method</h2>
+                  <p>This method approximates π by randomly placing points in a square and calculating the ratio of points that fall inside the inscribed circle.</p>
+                  <div class="pi-estimate">Current π estimate: <span id="mc-pi-estimate">0</span></div>
+                  <div class="simulation-controls">
+                      <button id="mc-start" class="btn btn-primary">Start</button>
+                      <button id="mc-stop" class="btn btn-outline">Stop</button>
+                      <button id="mc-reset" class="btn btn-outline">Reset</button>
+                      <div class="speed-control">
+                          <label for="mc-speed">Speed:</label>
+                          <input type="range" id="mc-speed" min="1" max="10" value="5">
+                      </div>
+                  </div>
+              </div>
+              <div class="simulation-visual">
+                  <canvas id="mc-canvas" width="400" height="400"></canvas>
+                  <div class="simulation-stats">
+                      <div>Points: <span id="mc-points">0</span></div>
+                      <div>Inside: <span id="mc-inside">0</span></div>
+                      <div>Ratio: <span id="mc-ratio">0</span></div>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="simulation-visual">
-          <canvas id="archimedes-canvas" width="400" height="400"></canvas>
-          <div class="simulation-stats">
-            <div>Lower bound: <span id="archimedes-lower">3.0000</span></div>
-            <div>Upper bound: <span id="archimedes-upper">3.4641</span></div>
-          </div>
-        </div>
-      </div>
 
-      <div id="leibniz" class="tab-pane">
-        <div class="simulation-description">
-          <h2>Leibniz Series</h2>
-          <p>This infinite series converges to π/4: 1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = π/4</p>
-          <div class="pi-estimate">Current π estimate: <span id="leibniz-pi-estimate">0</span></div>
-          <div class="simulation-controls">
-            <button id="leibniz-start" class="btn btn-primary">Start</button>
-            <button id="leibniz-stop" class="btn btn-outline">Stop</button>
-            <button id="leibniz-reset" class="btn btn-outline">Reset</button>
-            <div class="terms-control">
-              <label for="leibniz-terms">Terms: <span id="current-terms">0</span></label>
-              <input type="range" id="leibniz-terms" min="1" max="1000" value="100">
-            </div>
+          <div id="archimedes" class="tab-pane">
+              <div class="simulation-description">
+                  <h2>Archimedes' Method</h2>
+                  <p>Archimedes approximated π by calculating the perimeters of inscribed and circumscribed polygons around a circle.</p>
+                  <div class="pi-estimate">Current π estimate: <span id="archimedes-pi-estimate">3.0000</span></div>
+                  <div class="simulation-controls">
+                      <button id="archimedes-start" class="btn btn-primary">Start</button>
+                      <button id="archimedes-stop" class="btn btn-outline">Stop</button>
+                      <button id="archimedes-reset" class="btn btn-outline">Reset</button>
+                      <div class="sides-control">
+                          <label for="archimedes-sides">Sides: <span id="current-sides">6</span></label>
+                          <input type="range" id="archimedes-sides" min="6" max="96" step="6" value="6">
+                      </div>
+                  </div>
+              </div>
+              <div class="simulation-visual">
+                  <canvas id="archimedes-canvas" width="400" height="400"></canvas>
+                  <div class="simulation-stats">
+                      <div>Lower bound: <span id="archimedes-lower">3.0000</span></div>
+                      <div>Upper bound: <span id="archimedes-upper">3.4641</span></div>
+                      <div>Sides: <span id="archimedes-sides-display">6</span></div>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="simulation-visual">
-          <div id="leibniz-series" class="series-display">1 - 1/3 + 1/5 - ...</div>
-          <div class="convergence-chart">
-            <canvas id="leibniz-chart" width="400" height="300"></canvas>
+
+          <div id="leibniz" class="tab-pane">
+              <div class="simulation-description">
+                  <h2>Leibniz Series</h2>
+                  <p>This infinite series converges to π/4: 1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = π/4</p>
+                  <div class="pi-estimate">Current π estimate: <span id="leibniz-pi-estimate">0</span></div>
+                  <div class="simulation-controls">
+                      <button id="leibniz-start" class="btn btn-primary">Start</button>
+                      <button id="leibniz-stop" class="btn btn-outline">Stop</button>
+                      <button id="leibniz-reset" class="btn btn-outline">Reset</button>
+                      <div class="terms-control">
+                          <label for="leibniz-terms">Max Terms: <span id="current-terms">100</span></label>
+                          <input type="range" id="leibniz-terms" min="10" max="10000" step="10" value="100">
+                      </div>
+                  </div>
+              </div>
+              <div class="simulation-visual">
+                  <div id="leibniz-series" class="series-display">π/4 = 1 - 1/3 + 1/5 - ...</div>
+                  <div class="convergence-chart">
+                      <canvas id="leibniz-chart" width="400" height="300"></canvas>
+                  </div>
+                  <div class="simulation-stats">
+                      <div>Terms used: <span id="leibniz-terms-used">0</span></div>
+                      <div>Current sum: <span id="leibniz-sum">0</span></div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
   </main>
   <Footer />
 
-  <script is:inline>
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-        
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
+  <script>
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+              document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+              document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+              
+              btn.classList.add('active');
+              document.getElementById(btn.dataset.tab).classList.add('active');
+          });
       });
-    });
 
-    const mcCanvas = document.getElementById('mc-canvas');
-    const mcCtx = mcCanvas.getContext('2d');
-    let mcAnimationId = null;
-    let totalPoints = 0;
-    let pointsInside = 0;
-    let mcSpeed = 5;
+      const mcCanvas = document.getElementById('mc-canvas');
+      const mcCtx = mcCanvas.getContext('2d');
+      let mcAnimationId = null;
+      let totalPoints = 0;
+      let pointsInside = 0;
+      let mcSpeed = 5;
 
-    function initMonteCarlo() {
-      mcCtx.clearRect(0, 0, mcCanvas.width, mcCanvas.height);
-      mcCtx.fillStyle = '#0a0a15';
-      mcCtx.fillRect(0, 0, mcCanvas.width, mcCanvas.height);
-      
-      mcCtx.strokeStyle = 'rgba(100, 255, 218, 0.8)';
-      mcCtx.lineWidth = 2;
-      mcCtx.beginPath();
-      mcCtx.rect(0, 0, mcCanvas.width, mcCanvas.height);
-      mcCtx.stroke();
-      
-      mcCtx.beginPath();
-      mcCtx.arc(mcCanvas.width/2, mcCanvas.height/2, mcCanvas.width/2, 0, Math.PI*2);
-      mcCtx.stroke();
-    }
-
-    function runMonteCarlo() {
-      for (let i = 0; i < mcSpeed * 10; i++) {
-        addRandomPoint();
+      function initMonteCarlo() {
+          mcCtx.clearRect(0, 0, mcCanvas.width, mcCanvas.height);
+          mcCtx.fillStyle = '#0a0a15';
+          mcCtx.fillRect(0, 0, mcCanvas.width, mcCanvas.height);
+          
+          mcCtx.strokeStyle = 'rgba(100, 255, 218, 0.8)';
+          mcCtx.lineWidth = 2;
+          mcCtx.beginPath();
+          mcCtx.rect(0, 0, mcCanvas.width, mcCanvas.height);
+          mcCtx.stroke();
+          
+          mcCtx.beginPath();
+          mcCtx.arc(mcCanvas.width/2, mcCanvas.height/2, mcCanvas.width/2, 0, Math.PI*2);
+          mcCtx.stroke();
       }
-      mcAnimationId = requestAnimationFrame(runMonteCarlo);
-    }
 
-    function addRandomPoint() {
-      const x = Math.random() * mcCanvas.width;
-      const y = Math.random() * mcCanvas.height;
-      const distance = Math.sqrt(Math.pow(x - mcCanvas.width/2, 2) + Math.pow(y - mcCanvas.height/2, 2));
-      const isInside = distance <= mcCanvas.width/2;
-      
-      mcCtx.fillStyle = isInside ? 'rgba(100, 255, 218, 0.7)' : 'rgba(255, 100, 218, 0.7)';
-      mcCtx.beginPath();
-      mcCtx.arc(x, y, 2, 0, Math.PI*2);
-      mcCtx.fill();
-      
-      totalPoints++;
-      if (isInside) pointsInside++;
-      
-      const ratio = pointsInside / totalPoints;
-      const piEstimate = ratio * 4;
-      
-      updateMonteCarloStats(totalPoints, pointsInside, ratio, piEstimate);
-    }
+      function runMonteCarlo() {
+          for (let i = 0; i < mcSpeed * 10; i++) {
+              addRandomPoint();
+          }
+          mcAnimationId = requestAnimationFrame(runMonteCarlo);
+      }
 
-    function updateMonteCarloStats(points, inside, ratio, piEstimate) {
-      document.getElementById('mc-points').textContent = points;
-      document.getElementById('mc-inside').textContent = inside;
-      document.getElementById('mc-ratio').textContent = ratio.toFixed(6);
-      document.getElementById('mc-pi-estimate').textContent = piEstimate.toFixed(6);
-    }
+      function addRandomPoint() {
+          const x = Math.random() * mcCanvas.width;
+          const y = Math.random() * mcCanvas.height;
+          const distance = Math.sqrt(Math.pow(x - mcCanvas.width/2, 2) + Math.pow(y - mcCanvas.height/2, 2));
+          const isInside = distance <= mcCanvas.width/2;
+          
+          mcCtx.fillStyle = isInside ? 'rgba(100, 255, 218, 0.7)' : 'rgba(255, 100, 218, 0.7)';
+          mcCtx.beginPath();
+          mcCtx.arc(x, y, 2, 0, Math.PI*2);
+          mcCtx.fill();
+          
+          totalPoints++;
+          if (isInside) pointsInside++;
+          
+          const ratio = pointsInside / totalPoints;
+          const piEstimate = ratio * 4;
+          
+          updateMonteCarloStats(totalPoints, pointsInside, ratio, piEstimate);
+      }
 
-    document.getElementById('mc-start').addEventListener('click', () => {
-      if (!mcAnimationId) {
-        runMonteCarlo();
+      function updateMonteCarloStats(points, inside, ratio, piEstimate) {
+          document.getElementById('mc-points').textContent = points;
+          document.getElementById('mc-inside').textContent = inside;
+          document.getElementById('mc-ratio').textContent = ratio.toFixed(6);
+          document.getElementById('mc-pi-estimate').textContent = piEstimate.toFixed(6);
       }
-    });
-    
-    document.getElementById('mc-stop').addEventListener('click', () => {
-      if (mcAnimationId) {
-        cancelAnimationFrame(mcAnimationId);
-        mcAnimationId = null;
+
+      document.getElementById('mc-start').addEventListener('click', () => {
+          if (!mcAnimationId) {
+              runMonteCarlo();
+          }
+      });
+      
+      document.getElementById('mc-stop').addEventListener('click', () => {
+          if (mcAnimationId) {
+              cancelAnimationFrame(mcAnimationId);
+              mcAnimationId = null;
+          }
+      });
+      
+      document.getElementById('mc-reset').addEventListener('click', () => {
+          if (mcAnimationId) {
+              cancelAnimationFrame(mcAnimationId);
+              mcAnimationId = null;
+          }
+          totalPoints = 0;
+          pointsInside = 0;
+          initMonteCarlo();
+          updateMonteCarloStats(0, 0, 0, 0);
+      });
+      
+      document.getElementById('mc-speed').addEventListener('input', (e) => {
+          mcSpeed = parseInt(e.target.value);
+      });
+
+      const archimedesCanvas = document.getElementById('archimedes-canvas');
+      const archimedesCtx = archimedesCanvas.getContext('2d');
+      let archimedesAnimationId = null;
+      let currentSides = 6;
+      let archimedesRunning = false;
+
+      function initArchimedes() {
+          archimedesCtx.clearRect(0, 0, archimedesCanvas.width, archimedesCanvas.height);
+          archimedesCtx.fillStyle = '#0a0a15';
+          archimedesCtx.fillRect(0, 0, archimedesCanvas.width, archimedesCanvas.height);
+          
+          drawArchimedesPolygons(currentSides);
       }
-    });
-    
-    document.getElementById('mc-reset').addEventListener('click', () => {
-      if (mcAnimationId) {
-        cancelAnimationFrame(mcAnimationId);
-        mcAnimationId = null;
+
+      function drawArchimedesPolygons(sides) {
+          const centerX = archimedesCanvas.width / 2;
+          const centerY = archimedesCanvas.height / 2;
+          const radius = 180;
+
+          archimedesCtx.strokeStyle = 'rgba(100, 255, 218, 0.5)';
+          archimedesCtx.lineWidth = 2;
+          archimedesCtx.beginPath();
+          archimedesCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+          archimedesCtx.stroke();
+
+          archimedesCtx.strokeStyle = 'rgba(255, 100, 218, 0.8)';
+          archimedesCtx.lineWidth = 2;
+          archimedesCtx.beginPath();
+          for (let i = 0; i <= sides; i++) {
+              const angle = (i * 2 * Math.PI) / sides;
+              const x = centerX + radius * Math.cos(angle);
+              const y = centerY + radius * Math.sin(angle);
+              if (i === 0) {
+                  archimedesCtx.moveTo(x, y);
+              } else {
+                  archimedesCtx.lineTo(x, y);
+              }
+          }
+          archimedesCtx.stroke();
+
+          const circumRadius = radius / Math.cos(Math.PI / sides);
+          archimedesCtx.strokeStyle = 'rgba(100, 255, 100, 0.8)';
+          archimedesCtx.lineWidth = 2;
+          archimedesCtx.beginPath();
+          for (let i = 0; i <= sides; i++) {
+              const angle = (i * 2 * Math.PI) / sides;
+              const x = centerX + circumRadius * Math.cos(angle);
+              const y = centerY + circumRadius * Math.sin(angle);
+              if (i === 0) {
+                  archimedesCtx.moveTo(x, y);
+              } else {
+                  archimedesCtx.lineTo(x, y);
+              }
+          }
+          archimedesCtx.stroke();
+
+          const inscribedPerimeter = 2 * sides * Math.sin(Math.PI / sides);
+          const circumscribedPerimeter = 2 * sides * Math.tan(Math.PI / sides);
+          const lowerBound = inscribedPerimeter;
+          const upperBound = circumscribedPerimeter;
+          const piEstimate = (lowerBound + upperBound) / 2;
+
+          updateArchimedesStats(lowerBound, upperBound, piEstimate, sides);
       }
-      totalPoints = 0;
-      pointsInside = 0;
+
+      function runArchimedes() {
+          if (currentSides < 96) {
+              currentSides += 6;
+              drawArchimedesPolygons(currentSides);
+              document.getElementById('current-sides').textContent = currentSides;
+              document.getElementById('archimedes-sides').value = currentSides;
+              archimedesAnimationId = setTimeout(runArchimedes, 1000);
+          } else {
+              archimedesRunning = false;
+          }
+      }
+
+      function updateArchimedesStats(lower, upper, piEstimate, sides) {
+          document.getElementById('archimedes-lower').textContent = lower.toFixed(6);
+          document.getElementById('archimedes-upper').textContent = upper.toFixed(6);
+          document.getElementById('archimedes-pi-estimate').textContent = piEstimate.toFixed(6);
+          document.getElementById('archimedes-sides-display').textContent = sides;
+      }
+
+      document.getElementById('archimedes-start').addEventListener('click', () => {
+          if (!archimedesRunning) {
+              archimedesRunning = true;
+              runArchimedes();
+          }
+      });
+
+      document.getElementById('archimedes-stop').addEventListener('click', () => {
+          if (archimedesAnimationId) {
+              clearTimeout(archimedesAnimationId);
+              archimedesAnimationId = null;
+              archimedesRunning = false;
+          }
+      });
+
+      document.getElementById('archimedes-reset').addEventListener('click', () => {
+          if (archimedesAnimationId) {
+              clearTimeout(archimedesAnimationId);
+              archimedesAnimationId = null;
+          }
+          archimedesRunning = false;
+          currentSides = 6;
+          document.getElementById('current-sides').textContent = currentSides;
+          document.getElementById('archimedes-sides').value = currentSides;
+          initArchimedes();
+      });
+
+      document.getElementById('archimedes-sides').addEventListener('input', (e) => {
+          currentSides = parseInt(e.target.value);
+          document.getElementById('current-sides').textContent = currentSides;
+          drawArchimedesPolygons(currentSides);
+      });
+
+      const leibnizChart = document.getElementById('leibniz-chart');
+      const leibnizCtx = leibnizChart.getContext('2d');
+      let leibnizAnimationId = null;
+      let leibnizTerms = 0;
+      let leibnizSum = 0;
+      let leibnizMaxTerms = 100;
+      let leibnizData = [];
+      let leibnizRunning = false;
+
+      function initLeibniz() {
+          leibnizCtx.clearRect(0, 0, leibnizChart.width, leibnizChart.height);
+          leibnizCtx.fillStyle = '#0a0a15';
+          leibnizCtx.fillRect(0, 0, leibnizChart.width, leibnizChart.height);
+          
+          leibnizCtx.strokeStyle = 'rgba(100, 255, 218, 0.5)';
+          leibnizCtx.lineWidth = 1;
+          leibnizCtx.beginPath();
+          leibnizCtx.moveTo(40, 20);
+          leibnizCtx.lineTo(40, 280);
+          leibnizCtx.lineTo(380, 280);
+          leibnizCtx.stroke();
+
+          // Draw pi reference line
+          const piY = 280 - (Math.PI / 5) * 220;
+          leibnizCtx.strokeStyle = 'rgba(255, 100, 100, 0.8)';
+          leibnizCtx.setLineDash([5, 5]);
+          leibnizCtx.beginPath();
+          leibnizCtx.moveTo(40, piY);
+          leibnizCtx.lineTo(380, piY);
+          leibnizCtx.stroke();
+          leibnizCtx.setLineDash([]);
+
+          leibnizData = [];
+          updateLeibnizStats(0, 0);
+      }
+
+      function runLeibniz() {
+          if (leibnizTerms < leibnizMaxTerms) {
+              const term = Math.pow(-1, leibnizTerms) / (2 * leibnizTerms + 1);
+              leibnizSum += term;
+              leibnizTerms++;
+
+              const piEstimate = leibnizSum * 4;
+              leibnizData.push({ terms: leibnizTerms, estimate: piEstimate });
+
+              drawLeibnizChart();
+              updateLeibnizStats(leibnizTerms, piEstimate);
+
+              leibnizAnimationId = setTimeout(runLeibniz, 50);
+          } else {
+              leibnizRunning = false;
+          }
+      }
+
+      function drawLeibnizChart() {
+          leibnizCtx.clearRect(41, 21, 338, 258);
+
+          if (leibnizData.length < 2) return;
+
+          leibnizCtx.strokeStyle = 'rgba(100, 255, 218, 0.8)';
+          leibnizCtx.lineWidth = 2;
+          leibnizCtx.beginPath();
+
+          for (let i = 0; i < leibnizData.length; i++) {
+              const x = 40 + (leibnizData[i].terms / leibnizMaxTerms) * 340;
+              const y = 280 - (leibnizData[i].estimate / 5) * 220;
+
+              if (i === 0) {
+                  leibnizCtx.moveTo(x, y);
+              } else {
+                  leibnizCtx.lineTo(x, y);
+              }
+          }
+          leibnizCtx.stroke();
+      }
+
+      function updateLeibnizStats(terms, piEstimate) {
+          document.getElementById('leibniz-terms-used').textContent = terms;
+          document.getElementById('leibniz-sum').textContent = (leibnizSum).toFixed(6);
+          document.getElementById('leibniz-pi-estimate').textContent = piEstimate.toFixed(6);
+      }
+
+      document.getElementById('leibniz-start').addEventListener('click', () => {
+          if (!leibnizRunning) {
+              leibnizRunning = true;
+              runLeibniz();
+          }
+      });
+
+      document.getElementById('leibniz-stop').addEventListener('click', () => {
+          if (leibnizAnimationId) {
+              clearTimeout(leibnizAnimationId);
+              leibnizAnimationId = null;
+              leibnizRunning = false;
+          }
+      });
+
+      document.getElementById('leibniz-reset').addEventListener('click', () => {
+          if (leibnizAnimationId) {
+              clearTimeout(leibnizAnimationId);
+              leibnizAnimationId = null;
+          }
+          leibnizRunning = false;
+          leibnizTerms = 0;
+          leibnizSum = 0;
+          initLeibniz();
+      });
+
+      document.getElementById('leibniz-terms').addEventListener('input', (e) => {
+          leibnizMaxTerms = parseInt(e.target.value);
+          document.getElementById('current-terms').textContent = leibnizMaxTerms;
+      });
+
       initMonteCarlo();
-      updateMonteCarloStats(0, 0, 0, 0);
-    });
-    
-    document.getElementById('mc-speed').addEventListener('input', (e) => {
-      mcSpeed = parseInt(e.target.value);
-    });
-
-    initMonteCarlo();
-  </script>
+      initArchimedes();
+      initLeibniz();
+    </script>
 </Layout>
